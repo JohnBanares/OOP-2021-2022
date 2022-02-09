@@ -19,7 +19,7 @@ public class Loops extends PApplet
 	}
 
 	public void keyPressed()
-	{
+	{	//lab3
 		if (key >= '0' && key <='9')
 		{
 			mode = key - '0';
