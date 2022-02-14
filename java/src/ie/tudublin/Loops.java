@@ -47,6 +47,17 @@ public class Loops extends PApplet
 				break;
 				
 			case 1:
+				background(0);
+				int squares = (int) (mouseX / 20.0f);
+				float h = width / (float)squares;
+				for(int i = 0; i< squares; i++)
+				{
+					noStroke();
+					fill(map(i, 0, squares, 0, 255), 255, 255);
+					float x = map(i, 0, squares, 0 , width);
+					rect(x, x, h, h);// right diagonal
+					rect((width-h)-x, x, h, h);// left diagonal
+				}
 				break;
 		}
 	}
