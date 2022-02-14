@@ -27,7 +27,7 @@ public class Loops extends PApplet
 		println(mode);
 	}
 
-	
+	float offset = 0;
 	public void draw()
 	{
 		
@@ -57,6 +57,22 @@ public class Loops extends PApplet
 					float x = map(i, 0, squares, 0 , width);
 					rect(x, x, h, h);// right diagonal
 					rect((width-h)-x, x, h, h);// left diagonal
+				}
+				break;
+			case 2:
+				background(0);
+				int circles = (int) (mouseX / 20.0f);
+				float d = width / (float)circles;
+				for(int j = 0; j< circles; j++)
+				{
+
+					for(int i = 0; i< circles; i++)
+					{
+						noStroke();
+						float c = map(i + j + offset, 0, circles * 2, 0, 255);
+						fill(c, 255, 255);
+						float x = map(i, 0, circles - 1, d / 2.0f, width - ( d/ 2.0f));
+					}
 				}
 				break;
 		}
