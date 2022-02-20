@@ -94,6 +94,28 @@ public class Loops extends PApplet
 					
 				}
 				break;
+			/*case 4:
+				background(0);
+				colorMode(RGB);
+				stroke(255);
+				float cx = width / 2;
+				float cy = height /2;
+				float radius = 200;
+				int sides = (int)map(mouseX, 0, width, 2, 20);
+				for(int i = 0; i <= sides; i++)
+				{
+					float theta1 = map(i - 1, 0, sides, 0, TWO_PI);
+					float x1 = cx + sin(theta1) * radius;
+					float y1 = cy + cos(theta1) * radius;
+					
+					float theta2 = map(i, 0, sides, 0, TWO_PI);
+					float x2 = cx + sin(theta2) * radius;
+					float y2 = cy + cos(theta2) * radius;
+					line(x1, y1, x2, y2);
+					
+					//circle(x, y, 20);
+				}
+				break;*/
 		}
 	}
 }
