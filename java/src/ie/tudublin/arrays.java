@@ -13,7 +13,7 @@ public class arrays extends PApplet {
 
     int min = 0;
     int max=0;
-
+    float total = 0;
 	public void settings()
 	{
 		size(500, 500);
@@ -58,14 +58,28 @@ public class arrays extends PApplet {
            {
                max = k;
            }
+
+           total += rainfall[k];
         }
-       println("min rainfall is " + rainfall[min] + months[min]);
-       println("mx rainfall is " + rainfall[max] + months[max]);
-	}
+        println("min rainfall is " + rainfall[min] + months[min]);
+        println("mx rainfall is " + rainfall[max] + months[max]);
+        println("total is " + total);
+        println("average is " + total/rainfall.length);
+    }
 
 	
 	public void draw()
 	{	
-		
+		background(0);
+        noStroke();
+        colorMode(RGB);
+        float w = width /(float)rainfall.length;
+        for(int i = 0; i < rainfall.length; i ++)
+        {
+            float x = map(i, 0, rainfall.length, 0, width);
+            int c = (int)map(i, 0, rainfall.length, 0, 255);
+            fill(c, 255, 255);
+            rect(x, height, w, -rainfall[i]);
+        }
 	}
 }
