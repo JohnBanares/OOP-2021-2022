@@ -36,8 +36,8 @@ public class Audio1 extends PApplet
 
     public void settings()
     {
-        //size(1024, 500, P3D);
-        fullScreen(P3D, SPAN);
+        size(1024, 500, P3D);
+        //fullScreen(P3D, SPAN);
     }
 
     public void setup()
@@ -139,7 +139,6 @@ public class Audio1 extends PApplet
         fill(100, 255, 255);        
         
         circle(width / 2, halfH, lerpedA * 100);
-
         circle(100, y, 50);
         y += random(-10, 10);
         smoothedY = lerp(smoothedY, y, 0.1f);        
