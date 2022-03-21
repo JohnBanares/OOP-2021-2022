@@ -4,6 +4,7 @@ import ddf.minim.AudioBuffer;
 import ddf.minim.AudioInput;
 import ddf.minim.AudioPlayer;
 import ddf.minim.Minim;
+import ddf.minim.analysis.FFT;
 import processing.core.PApplet;
 
 public class Audio2 extends PApplet
@@ -19,6 +20,8 @@ public class Audio2 extends PApplet
     float y = 0;
     float smoothedY = 0;
     float smoothedAmplitude = 0;
+
+    FFT fft;
 
     public void keyPressed() {
 		if (key >= '0' && key <= '9') {
@@ -44,12 +47,15 @@ public class Audio2 extends PApplet
     {
         minim = new Minim(this);
         // Uncomment this to use the microphone
-        // ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-        // ab = ai.mix; 
-        ap = minim.loadFile("heroplanet.mp3", 1024);
-        ap.play();
-        ab = ap.mix;
-        colorMode(HSB);
+        ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
+        ab = ai.mix; 
+
+        //ap = minim.loadFile("heroplanet.mp3", 1024);
+        //ap.play();
+        //ab = ap.mix;
+        colorMode(RGB);
+
+        fft = new FFT(1024, 44100);
 
         y = height / 2;
         smoothedY = y;
@@ -61,7 +67,40 @@ public class Audio2 extends PApplet
 
     public void draw()
     {
-        //monday week9 
+        //monday week9
+        background(0);
+        stroke(255);
+        float halfH = height /2; 
+        for(int i = 0; i <ab.size(); i++)
+        {
+            line(i, halfH ,i, halfH + ab.get(i) * halfH);
+        }
+
+        fft.window(FFT.HAMMING);
+        fft.forward(ab);
+
+        stroke(0,255,0);
+        for(int i = 0; i< fft.specSize(); i++)
+        {
+            line(i, 0, i,fft.getBand(i) * 10);
+        }
+
+        int maxIndex = 0;
+
+        //fill out missing code to find the max frequency
+        for(int i = 0; i < fft.specSize(); i++)
+        {
+            if (fft.getBand(i) > fft.getBand(maxIndex))
+            {
+                maxIndex = i;
+            }
+        }
+
+        float freq = fft.indexToFreq(maxIndex);
+
+        textSize(20);
+        fill(255);
+        text("Freq: " + freq, 100, 200);
 
     }        
 }
