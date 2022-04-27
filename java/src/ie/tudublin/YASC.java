@@ -11,7 +11,7 @@ public class YASC extends PApplet
     Player p1;
     Health h;
 
-    ArrayList<GameObject> GameObjects = new ArrayList<GameObject>();
+    ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
 
     public void setup()
     {
@@ -36,5 +36,11 @@ public class YASC extends PApplet
 
         h.update();
         h.render();
+
+        for(GameObject go: gameObjects)
+        {
+            go.update();
+            go.render();
+        }
     }    
 }
